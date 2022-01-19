@@ -1,0 +1,8 @@
+/version/:
+    get:
+        tags: [Version]
+        summary: Get version of project
+        description: Get version of project
+        responses:
+            200:
+                description: Version of project

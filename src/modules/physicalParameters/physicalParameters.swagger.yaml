@@ -1,0 +1,142 @@
+/physical-parameters/:
+    get:
+        tags: [PhysicalParameter]
+        summary: Get a list of Physical parameters
+        description: Get a list of Physical parameters
+        parameters:
+            - in: query
+              name: offset
+              schema:
+                  type: number
+                  default: 0
+            - in: query
+              name: limit
+              schema:
+                  type: number
+                  default: 10
+            - in: query
+              name: transmitterId
+              schema:
+                  type: string
+                  example: 614f1139b65d2496fcc02572
+        responses:
+            200:
+                description: A list of Physical parameters
+    post:
+        tags: [PhysicalParameter]
+        summary: Create a Physical parameter
+        description: Create a new one Physical parameter
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: array
+                        items:
+                            type: object
+                            properties:
+                                heartRate:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Heart rate
+                                sleep:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Sleep
+                                steps:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Steps
+                                calories:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Calories
+                                exerciseDuration:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Exercise duration
+                                standing:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Standing
+                                abnormalHeartRates:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Abnormal heart rates
+                                falls:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Falls
+                                ecgReadings:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Ecg readings
+                                accelerometer:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Accelerometer metric
+                                gyroscope:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Gyroscope metric
+                                gyroChanges:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Count of gyroscope changes
+                                temperature:
+                                    type: number
+                                    required: false
+                                    example: 1
+                                    description: Temperature metric
+                                transmitter:
+                                    type: string
+                                    required: true
+                                    example: "123"
+                                    description: Transmitter's id
+                                dateTime:
+                                    type: date
+                                    required: true
+                                    example: "2021-09-09T07:55:52.321Z"
+                                    description: Date when data get
+        responses:
+            200:
+                description: A new Physical parameter
+
+/physical-parameters/{id}:
+    get:
+        tags: [PhysicalParameter]
+        summary: Get a Physical parameter by id
+        description: Get a Physical parameter by id
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Physical parameter
+    delete:
+        tags: [PhysicalParameter]
+        summary: Delete a Physical parameter
+        description: Delete a Physical parameter
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Physical parameter

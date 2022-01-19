@@ -1,0 +1,152 @@
+/proximity/:
+    get:
+        tags: [Proximity]
+        summary: Get a list of Proximity
+        description: Get a list of Proximity
+        parameters:
+            - in: query
+              name: transmitterId
+              required: false
+              schema:
+                  type: string
+            - in: query
+              name: dateFrom
+              required: false
+              schema:
+                  type: date
+            - in: query
+              name: dateTo
+              required: false
+              schema:
+                  type: date
+            - in: query
+              name: offset
+              schema:
+                  type: number
+                  default: 0
+            - in: query
+              name: limit
+              schema:
+                  type: number
+                  default: 10
+        responses:
+            200:
+                description: A list of Proximity
+    post:
+        tags: [Proximity]
+        summary: Create a Proximity
+        description: Create a new one Proximity
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            transmitter:
+                                type: string
+                                required: true
+                                example: "123"
+                                description: Transmitter's id
+                            closestRoom:
+                                type: string
+                                required: true
+                                example: "123"
+                                description: Beacon that placed in closest room
+                            closestRoomSignal:
+                                type: number
+                                required: true
+                                example: 50
+                                description: Beacon signal strength that placed in closest room
+                            veryClose:
+                                type: string
+                                required: false
+                                example: "124"
+                                description: Beacon that placed in very close room
+                            veryCloseSignal:
+                                type: number
+                                required: false
+                                example: 50
+                                description: Beacon signal strength that placed in very close room
+                            dateTime:
+                                type: date
+                                required: true
+                                example: "2021-09-09T07:55:52.321Z"
+                                description: Date when signal get
+        responses:
+            200:
+                description: A new Proximity
+
+/proximity/history:
+    get:
+        tags: [Proximity]
+        summary: Get list of history of Proximity
+        description: Get list of history of Proximity
+        parameters:
+            - in: query
+              name: sortBy
+              schema:
+                  type: string
+                  enum: ["dateTime"]
+                  default: "dateTime"
+            - in: query
+              name: orderBy
+              schema:
+                  type: string
+                  enum: ["asc", "desc"]
+                  default: "asc"
+            - in: query
+              name: transmitterId
+              required: true
+              schema:
+                  type: string
+            - in: query
+              name: period
+              required: false
+              schema:
+                  enum: ["CURRENT_MONTH", "PREVIOUS_MONTH", "LAST_20_DAYS"]
+            - in: query
+              name: dateFrom
+              required: false
+              schema:
+                  type: date
+            - in: query
+              name: dateTo
+              required: false
+              schema:
+                  type: date
+            - in: query
+              name: room
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: A list of history of Proximity
+
+/proximity/{id}:
+    get:
+        tags: [Proximity]
+        summary: Get a Proximity by id
+        description: Get a Proximity by id
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Proximity
+    delete:
+        tags: [Proximity]
+        summary: Delete a Proximity
+        description: Delete a Proximity
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Proximity

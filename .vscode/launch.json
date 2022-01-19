@@ -1,0 +1,32 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "launch-local",
+            "skipFiles": ["<node_internals>/**"],
+            "outputCapture": "std",
+            "program": "${workspaceFolder}\\src\\app.js",
+            "env": { "NODE_ENV": "local" }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "launch-dev",
+            "skipFiles": ["<node_internals>/**"],
+            "outputCapture": "std",
+            "program": "${workspaceFolder}\\src\\app.js",
+            "env": { "NODE_ENV": "dev" }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "launch-prod",
+            "skipFiles": ["<node_internals>/**"],
+            "outputCapture": "std",
+            "program": "${workspaceFolder}\\src\\app.js",
+            "env": { "NODE_ENV": "prod" }
+        }
+    ]
+}

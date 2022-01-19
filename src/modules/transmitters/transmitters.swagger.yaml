@@ -1,0 +1,184 @@
+/transmitters/:
+    get:
+        tags: [Transmitter]
+        summary: Get a list of Transmitters
+        description: Get a list of Transmitters
+        parameters:
+            - in: query
+              name: offset
+              schema:
+                  type: number
+                  default: 0
+            - in: query
+              name: limit
+              schema:
+                  type: number
+                  default: 10
+        responses:
+            200:
+                description: A list of Transmitters
+    post:
+        tags: [Transmitter]
+        summary: Create a Transmitter
+        description: Create a new one Transmitter
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                required: false
+                                example: "John"
+                                description: Transmitter name
+                            kind:
+                                type: string
+                                required: true
+                                example: "PATIENT"
+                                enum:
+                                    [
+                                        "PATIENT",
+                                        "CARE_GIVER",
+                                        "FAMILY_MEMBER",
+                                        "NURSE",
+                                    ]
+                                description: Transmitter type
+                            appType:
+                                type: string
+                                required: true
+                                example: "MOBILE"
+                                enum: ["MOBILE", "WATCH"]
+                                description: Transmitter application type
+                            languages:
+                                type: array
+                                required: false
+                                items:
+                                    type: string
+                                example: ["Ukrainian"]
+                                description: Transmitter's languages
+        responses:
+            200:
+                description: A new Transmitter
+
+/transmitters/{id}:
+    get:
+        tags: [Transmitter]
+        summary: Get a Transmitter by id
+        description: Get a Transmitter by id
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Transmitter
+    put:
+        tags: [Transmitter]
+        summary: Update a Transmitter
+        description: Update a Transmitter
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                required: false
+                                example: "John"
+                                description: Transmitter name
+                            kind:
+                                type: string
+                                required: false
+                                example: "NURSE"
+                                enum:
+                                    [
+                                        "PATIENT",
+                                        "CARE_GIVER",
+                                        "FAMILY_MEMBER",
+                                        "NURSE",
+                                    ]
+                                description: Transmitter type
+                            appType:
+                                type: string
+                                required: false
+                                example: "MOBILE"
+                                enum: ["MOBILE", "WATCH"]
+                                description: Transmitter application type
+                            languages:
+                                type: array
+                                required: false
+                                items:
+                                    type: string
+                                example: ["Ukrainian"]
+                                description: Transmitter's languages
+        responses:
+            200:
+                description: Transmitter
+    delete:
+        tags: [Transmitter]
+        summary: Delete a Transmitter
+        description: Delete a Transmitter
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Transmitter
+
+/transmitters/{id}/beacons:
+    get:
+        tags: [Transmitter]
+        summary: Get the Beacons of Transmitter
+        description: Get the Beacons of Transmitter
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+            - in: query
+              name: offset
+              schema:
+                  type: number
+                  default: 0
+            - in: query
+              name: limit
+              schema:
+                  type: number
+                  default: 10
+        responses:
+            200:
+                description: List of Transmitter's beacons
+
+/transmitters/{id}/beacons/{beaconId}:
+    delete:
+        tags: [Transmitter]
+        summary: Remove the Transmitter from Beacon
+        description: Remove the Transmitter from Beacon
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+            - in: path
+              name: beaconId
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Updated Beacon

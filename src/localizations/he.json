@@ -1,0 +1,17 @@
+{
+    "errors": {
+        "joi": {
+            "string": {
+                "pattern": {
+                    "base": "Wrong ID. Please check for the typos or missed symbols."
+                }
+            }
+        }
+    },
+    "proximity": {
+        "history": {
+            "today": "היום",
+            "yesterday": "אתמול"
+        }
+    }
+}

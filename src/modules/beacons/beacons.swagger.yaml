@@ -1,0 +1,109 @@
+/beacons/:
+    get:
+        tags: [Beacon]
+        summary: Get a list of Beacons
+        description: Get a list of Beacons
+        parameters:
+            - in: query
+              name: offset
+              schema:
+                  type: number
+                  default: 0
+            - in: query
+              name: limit
+              schema:
+                  type: number
+                  default: 10
+        responses:
+            200:
+                description: A list of Beacons
+    post:
+        tags: [Beacon]
+        summary: Create a Beacon
+        description: Create a new one Beacon
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            macAddress:
+                                type: string
+                                required: true
+                                example: "123"
+                                description: Beacon's MAC address
+                            room:
+                                type: string
+                                required: true
+                                example: "Kitchen"
+                                description: A room where Beacon located
+                            transmitter:
+                                type: string
+                                required: true
+                                example: "12345"
+                                description: ID of Transmitter
+        responses:
+            200:
+                description: A new Beacon
+
+/beacons/{id}:
+    get:
+        tags: [Beacon]
+        summary: Get a Beacon by id
+        description: Get a Beacon by id
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Beacon
+    put:
+        tags: [Beacon]
+        summary: Update a Beacon
+        description: Update a Beacon
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        requestBody:
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            macAddress:
+                                type: string
+                                required: true
+                                example: "123"
+                                description: Beacon's MAC address
+                            room:
+                                type: string
+                                required: true
+                                example: "Kitchen"
+                                description: A room where Beacon located
+                            transmitter:
+                                type: string
+                                required: true
+                                example: "12345"
+                                description: ID of Transmitter
+        responses:
+            200:
+                description: Beacon
+    delete:
+        tags: [Beacon]
+        summary: Delete a Beacon
+        description: Delete a Beacon
+        parameters:
+            - in: path
+              name: id
+              required: true
+              schema:
+                  type: string
+        responses:
+            200:
+                description: Beacon
