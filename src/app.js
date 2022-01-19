@@ -12,12 +12,18 @@ const locale = require("./middlewares/locale");
 
 const logger = require("./utils/logger");
 
+const swagger = require("./utils/swagger");
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(promise());
 app.use(locale());
+
+app.get("/swagger.json", (rec, res) => {
+    res.send(swagger.specs)
+})
 
 app.use("/", api);
 

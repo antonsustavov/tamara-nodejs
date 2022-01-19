@@ -51,8 +51,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-.env
-
 ### Visual Studio Code ###
 .vscode/*
 !.vscode/launch.json
